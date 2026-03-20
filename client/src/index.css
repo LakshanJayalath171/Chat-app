@@ -1,1 +1,15 @@
+/* importing Outfit font */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+/* importing tailwind css */
 @import "tailwindcss";
+
+
+*{
+  font-family: "Outfit",sans-serif;
+}
+
+/* hiding verticle scrollbars  */
+::-webkit-scrollbar{
+  display: none;
+}
