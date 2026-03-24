@@ -3,6 +3,8 @@
 import cloudinary from "../lib/cloudinary.js";
 import User from "../models/user.js";
 
+import { io,userSoketMap } from "../server.js";
+
 export const getUsersForSidebar = async()=>{
     try {
         const userId = req.user._id;
@@ -84,6 +86,13 @@ export const sendMessage = async(req,res)=>{
             text,
             image:imageUrl,
         })
+
+        //emmit new message to users soket
+
+        const recieverSoketId = userSoketMap[recieverId];
+        if(recieverSoketId){
+            io.to(recieverSoketId).emit("New Message",newMessage);
+        }
         res.json({success:true,newMessage})
     } catch (error) {
         conole.log(error.message);
